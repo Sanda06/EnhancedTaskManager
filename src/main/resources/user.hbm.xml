@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="main">
+    <class name="main.User" table="user" >
+        <id name="idUser" type="int" column="user_id">
+            <generator class="increment"/>
+        </id>
+        <property name="firstName" column="first_name" type="string" />
+        <property name="lastName" column="last_name" type="string" />
+        <property name="userName" column="user_name" type="string" />
+        <set name="users" inverse="true" cascade="save-update">
+            <key column="task_id" not-null="true"/>
+            <one-to-many class="main.User"/>
+        </set>
+    </class>
+</hibernate-mapping>
